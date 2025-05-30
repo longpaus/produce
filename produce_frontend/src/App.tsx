@@ -1,34 +1,43 @@
-import { useState } from 'react'
-import TrackingItemCard from './components/TrackingItemCard'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import Tracking from './pages/Tracking'
 
 function App() {
-  const [categories] = useState([
-    { id: 1, name: 'Study software', color: 'bg-blue-500' },
-    { id: 2, name: '日本語', color: 'bg-green-500' },
-    { id: 3, name: 'Math', color: 'bg-red-500' }
-  ]);
-
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      {/* Header */}
-      <header className="p-4 border-b border-gray-800 flex justify-between items-center">
-        <h1 className="text-2xl font-bold">Activity Tracking</h1>
-        <button className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-lg text-sm font-medium">
-          Add Category
-        </button>
-      </header>
+    <Router>
+      <div className="min-h-screen bg-gray-900 text-white">
+        {/* Fixed Navigation */}
+        <nav className="fixed top-0 left-0 right-0 bg-gray-900 z-20 border-b border-gray-800 shadow-md">
+          <div className="max-w-6xl mx-auto flex justify-between items-center p-4">
+            <div className="text-2xl font-bold">Produce</div>
+            <div className="space-x-4">
+              <Link to="/" className="hover:text-blue-400">Home</Link>
+              <Link to="/tracking" className="hover:text-blue-400">Tracking</Link>
+            </div>
+          </div>
+        </nav>
 
-      {/* Main Content */}
-      <main className="max-w-3xl mx-auto p-4">
-        <h2 className="text-xl font-semibold mb-4">Your Categories</h2>
-        
-        {/* Categories List */}
-        <div className="space-y-3">
-          {categories.map(category => (
-            <TrackingItemCard key={category.id} name={category.name} color={category.color} />
-          ))}
+        {/* Content with padding for fixed navbar */}
+        <div className="pt-16">
+          {/* Routes */}
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/tracking" element={<Tracking />} />
+          </Routes>
         </div>
-      </main>
+      </div>
+    </Router>
+  )
+}
+
+// Simple Home component
+function Home() {
+  return (
+    <div className="max-w-6xl mx-auto p-4">
+      <h1 className="text-3xl font-bold mb-4">Welcome to Produce</h1>
+      <p className="mb-4">This is a simple application for tracking activities.</p>
+      <Link to="/tracking" className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-lg inline-block">
+        Go to Tracking
+      </Link>
     </div>
   )
 }
