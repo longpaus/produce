@@ -1,7 +1,5 @@
 import express,{ Request, Response } from 'express';
 import { createUser, getUserByEmail, deleteUser, login } from '../service/userService';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 
 const router = express.Router();
 

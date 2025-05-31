@@ -12,7 +12,7 @@ export const createUser = async (user: UserDtoRequest): Promise<ResultSetHeader>
         const result = await createUserRepository(user);
         return result;
     } catch (error) {
-        throw new Error('Error occured while creating user: ' + error);
+        throw error;
     }
 };
 
@@ -21,7 +21,7 @@ export const getUserByEmail = async (email: string): Promise<UserDtoResponse> =>
         const result = await getUserByEmailRepository(email);
         return result;
     } catch (error) {
-        throw new Error('Error occured while getting user by email: ' + error);
+        throw error;
     }
 };
 
@@ -30,7 +30,7 @@ export const deleteUser = async (id: number): Promise<ResultSetHeader> => {
         const result = await deleteUserByIdRepository(id);
         return result;
     } catch (error) {
-        throw new Error('Error occured while deleting user by id: ' + error);
+        throw error;
     }
 };
 
@@ -46,6 +46,6 @@ export const login = async (email: string, hashed_password: string): Promise<Use
         }
         return result;
     } catch (error) {
-        throw new Error('Error occured while logging in: ' + error);
+        throw error;
     }
 };
