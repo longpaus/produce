@@ -103,21 +103,21 @@ function Tracking() {
       {/* Add Category Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4" onClick={handleOutsideClick}>
-          <div className="bg-gray-800 rounded-lg p-6 w-full max-w-md" ref={modalRef}>
-            <h2 className="text-xl font-bold mb-4">Add New Category</h2>
+          <div className="bg-gray-800 rounded-lg p-5 w-full max-w-sm" ref={modalRef}>
+            <h2 className="text-lg font-bold mb-3">Add New Category</h2>
             
-            <div className="mb-4">
+            <div className="mb-3">
               <label className="block text-sm font-medium mb-1">Category Name</label>
               <input
                 type="text"
-                className="w-full bg-gray-700 rounded px-3 py-2 text-white"
+                className="w-full bg-gray-700 rounded px-3 py-2 text-white text-sm"
                 value={newCategory.name}
                 onChange={(e) => setNewCategory({...newCategory, name: e.target.value})}
                 placeholder="Enter category name"
               />
             </div>
             
-            <div className="mb-6">
+            <div className="mb-4">
               <label className="block text-sm font-medium mb-2">Select Color</label>
               <div className="grid gap-1 p-2 bg-gray-700 rounded-lg">
                 {colorPalette.map((row, rowIndex) => (
@@ -125,7 +125,7 @@ function Tracking() {
                     {row.map(color => (
                       <button
                         key={color}
-                        className={`w-full h-8 rounded-md ${color} ${newCategory.color === color ? 'ring-2 ring-white' : ''}`}
+                        className={`w-full h-6 rounded-md ${color} ${newCategory.color === color ? 'ring-2 ring-white' : ''}`}
                         onClick={() => setNewCategory({...newCategory, color})}
                         aria-label={color.replace('bg-', '')}
                       />
@@ -135,15 +135,15 @@ function Tracking() {
               </div>
             </div>
             
-            <div className="flex justify-center gap-4">
+            <div className="flex justify-end gap-2">
               <button 
-                className="px-6 py-2 bg-gray-600 hover:bg-gray-700 rounded cursor-pointer"
+                className="px-4 py-1.5 bg-gray-600 hover:bg-gray-700 rounded text-sm cursor-pointer"
                 onClick={() => setIsModalOpen(false)}
               >
                 Cancel
               </button>
               <button 
-                className="px-6 py-2 bg-blue-500 hover:bg-blue-600 rounded cursor-pointer"
+                className="px-4 py-1.5 bg-blue-500 hover:bg-blue-600 rounded text-sm cursor-pointer"
                 onClick={handleAddCategory}
               >
                 Add
